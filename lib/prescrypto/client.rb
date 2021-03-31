@@ -2,28 +2,28 @@
 
 module Prescrypto
   class Client
-    def initialize(base_url:, auth_token:)
-      @uri = URI.parse(base_url)
-      @auth_token = auth_token
+    def initialize(base_url: nil, auth_token: nil)
+      @uri = URI.parse(base_url || Prescrypto.configuration.api_url)
+      @auth_token = auth_token || Prescrypto.configuration.auth_token
     end
 
-    def get(path:)
+    def get(path)
       request(method: :get, path: path)
     end
 
-    def post(path:, body: nil)
+    def post(path, body = nil)
       request(method: :post, path: path, body: body)
     end
 
-    def put(path:)
+    def put(path)
       request(method: :put, path: path)
     end
 
-    def patch(path:)
+    def patch(path)
       request(method: :patch, path: path)
     end
 
-    def delete(path:)
+    def delete(path)
       request(method: :delete, path: path)
     end
 

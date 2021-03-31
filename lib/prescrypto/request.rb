@@ -27,7 +27,7 @@ module Prescrypto
       @request = http_request_class.new(uri).tap do |req|
         req['Accept']               = 'application/json'
         req['Content-Type']         = 'application/json'
-        req['Authorization']        = "Bearer #{token}" if token
+        req['Authorization']        = "Token #{token}" if token
         req.body = body if body
       end
       @uri = uri

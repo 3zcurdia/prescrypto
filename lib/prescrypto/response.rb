@@ -1,28 +1,32 @@
 # frozen_string_literal: true
 
 module Prescrypto
-  class Response < Result
+  class Response
+    attr_reader :http_response, :content, :errors
+
     def initialize(http_response)
-      super(http_response, nil)
-      parsed_body
+      @http_response = http_response
+      @errors = []
+      @content = safe_parse(http_response.body)
     end
 
     def successful?
-      value.is_a?(Net::HTTPSuccess) && super
+      http_response.is_a?(Net::HTTPSuccess) && error.empty?
     end
 
-    def parsed_body
-      return unless value.body
-
-      @parsed_body ||= safe_parse(value.body)
+    def status_code
+      http_response.code
     end
 
     private
 
     def safe_parse(body)
+      return unless body
+
       JSON.parse(body, symbolize_names: true)
     rescue JSON::ParserError
-      error = InvalidResponseError.new(description: 'Invalid JSON body')
+      @errors << InvalidResponseError.new('Invalid JSON response')
+      nil
     end
   end
 end

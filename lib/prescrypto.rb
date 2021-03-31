@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
+require 'net/http'
+require 'json'
+require 'prescrypto/configuration'
 require 'prescrypto/version'
-require 'prescrypto/client'
 require 'prescrypto/request'
 require 'prescrypto/response'
+require 'prescrypto/client'
 
 module Prescrypto
   class Error < StandardError; end
@@ -12,9 +15,11 @@ module Prescrypto
 
   class InvalidResponseError < StandardError; end
 
-  Result = Struct.new(:value, :error) do
-    def successful?
-      error.nil?
-    end
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
+
+  def self.configure
+    yield(configuration)
   end
 end
