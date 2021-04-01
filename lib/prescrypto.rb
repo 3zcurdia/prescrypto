@@ -7,6 +7,7 @@ require 'prescrypto/version'
 require 'prescrypto/request'
 require 'prescrypto/response'
 require 'prescrypto/client'
+require 'prescrypto/rest'
 
 module Prescrypto
   class Error < StandardError; end
@@ -21,5 +22,9 @@ module Prescrypto
 
   def self.configure
     yield(configuration)
+  end
+
+  def self.client(token)
+    Rest.new(Client.new(auth_token: token))
   end
 end

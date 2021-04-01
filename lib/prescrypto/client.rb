@@ -2,43 +2,44 @@
 
 module Prescrypto
   class Client
-    def initialize(base_url: nil, auth_token: nil)
-      @uri = URI.parse(base_url || Prescrypto.configuration.api_url)
+    def initialize(auth_token: nil)
+      @base_uri = URI.parse(Prescrypto.configuration.api_url)
       @auth_token = auth_token || Prescrypto.configuration.auth_token
     end
 
-    def get(path)
-      request(method: :get, path: path)
+    def get(path:, query: nil)
+      request(method: :get, path: path, query: query)
     end
 
-    def post(path, body = nil)
+    def post(path:, body: nil)
       request(method: :post, path: path, body: body)
     end
 
-    def put(path)
-      request(method: :put, path: path)
+    def put(path:, body: nil)
+      request(method: :put, path: path, body: body)
     end
 
-    def patch(path)
-      request(method: :patch, path: path)
+    def patch(path:, body: nil)
+      request(method: :patch, path: path, body: body)
     end
 
-    def delete(path)
+    def delete(path:)
       request(method: :delete, path: path)
     end
 
     private
 
-    attr_reader :uri, :auth_token
+    attr_reader :base_uri, :auth_token
 
-    def request(method:, path:, body: nil)
-      Request.for(method: method, uri: uri_for(path), body: body, token: auth_token).call
+    def request(method:, path:, body: nil, query: nil)
+      uri_with_path = uri_for(path, query)
+      Request.call(method: method, uri: uri_with_path, body: body, token: auth_token)
     end
 
-    def uri_for(path)
-      uri_with_path = uri.dup
-      uri_with_path.path = path
-      uri_with_path
+    def uri_for(path, _query = nil)
+      uri = base_uri.dup
+      uri.path = path
+      uri
     end
   end
 end

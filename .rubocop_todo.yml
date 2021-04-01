@@ -12,3 +12,9 @@
 Gemspec/RequiredRubyVersion:
   Exclude:
     - 'prescrypto.gemspec'
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 15
