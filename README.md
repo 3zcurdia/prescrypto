@@ -1,15 +1,13 @@
 # Prescrypto
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/prescrypto`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Prescrypto API wrapper gem, it encapsulate the logic to interact with prescrypto apis.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'prescrypto'
+gem 'prescrypto', github: 'diagnostikare/prescrypto'
 ```
 
 And then execute:
@@ -22,7 +20,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Configure api base url
+
+```
+Prescrypto.configure do |config|
+  config.api_url = ENV['PRESCRYPTO_API_URL']
+end
+```
+
+Create a rest client
+```
+client = Prescrypto.rest(api_token)
+```
+
+Use the rest client
+
+```
+client.list_medications
+client.show_medication(982)
+```
 
 ## Development
 
