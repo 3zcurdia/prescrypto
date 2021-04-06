@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Prescrypto api client'
   spec.description   = 'Prescrypto api client '
-  spec.homepage      = 'https://github.com/3zcurdia/prescrypto'
+  spec.homepage      = 'https://github.com/diagnostikare/prescrypto'
   spec.license       = 'MIT'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.3.0')
 
