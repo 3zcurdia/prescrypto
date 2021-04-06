@@ -7,7 +7,6 @@ require 'prescrypto/rest/medications'
 require 'prescrypto/rest/medics'
 require 'prescrypto/rest/patients'
 require 'prescrypto/rest/prescriptions'
-require 'prescrypto/rest/rx_endpoints'
 
 module Prescrypto
   class Rest
@@ -18,14 +17,12 @@ module Prescrypto
     include Prescrypto::Rest::Medics
     include Prescrypto::Rest::Patients
     include Prescrypto::Rest::Presciptions
-    include Prescrypto::Rest::RxEndpoints
 
     # API v2
     include Prescrypto::Rest::Hospitals
     # include Prescrypto::Rest::Medications
     # include Prescrypto::Rest::Medics
     # include Prescrypto::Rest::Patients
-    # include Prescrypto::Rest::RxEndpoints
 
     def initialize(client)
       @client = client

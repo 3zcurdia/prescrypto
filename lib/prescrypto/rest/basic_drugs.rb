@@ -4,19 +4,23 @@ module Prescrypto
   class Rest
     module BasicDrugs
       # GET /api/v1/basic_drugs/
-      def basic_drugs
+      def list_basic_drugs
+        client.get(path: '/api/v1/basic_drugs/')
       end
 
       # POST /api/v1/basic_drugs/
-      def basic_drugs_create(payload = {})
+      def create_basic_drug(payload = {})
+        client.post(path: '/api/v1/basic_drugs/', body: payload.to_json)
       end
 
       # GET /api/v1/basic_drugs/{id}/
-      def basic_drug(id)
+      def show_basic_drug(id)
+        client.get(path: "/api/v1/basic_drugs/#{id}")
       end
 
       # PATCH /api/v1/basic_drugs/{id}/
-      def basic_drugs_update(id, payload = {})
+      def update_basic_drug(id, payload = {})
+        client.patch(path: "/api/v1/basic_drugs/#{id}", body: payload.to_json)
       end
     end
   end

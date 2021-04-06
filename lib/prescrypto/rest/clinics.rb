@@ -4,19 +4,23 @@ module Prescrypto
   class Rest
     module Clinics
       # GET /api/v1/clinics/
-      def clinics
+      def list_clinics
+        client.get(path: '/api/v1/clinics/')
       end
 
       # POST /api/v1/clinics/
-      def clinics_create(payload = {})
+      def create_clinic(payload = {})
+        client.post(path: '/api/v1/clinics/', body: payload.to_json)
       end
 
       # GET /api/v1/clinics/{id}/
-      def clinic(id)
+      def show_clinic(id)
+        client.get(path: "/api/v1/clinics/#{id}/")
       end
 
       # PATCH /api/v1/clinics/{id}/
-      def clinics_update(id, payload = {})
+      def update_clinic(id, payload = {})
+        client.patch(path: "/api/v1/clinics/#{id}/", body: payload.to_json)
       end
     end
   end

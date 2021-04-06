@@ -24,7 +24,7 @@ module Prescrypto
     yield(configuration)
   end
 
-  def self.client(token)
+  def self.rest(token)
     Rest.new(Client.new(auth_token: token))
   end
 end
