@@ -24,7 +24,12 @@ module Prescrypto
     yield(configuration)
   end
 
-  def self.rest(token)
-    Rest.new(Client.new(auth_token: token))
+  def self.rest(token = nil)
+    Rest.new(Client.new(auth_token: token || configuration.api_token))
+  end
+
+  def self.deep_link(**args)
+    args = args.slice(:token, :hospital_id, :patient_name, :patient_email, :patient_dob).compact
+    "#{configuration.api_url}new/api_token/?#{URI.encode_www_form(args.merge(v2_redirect: true))}"
   end
 end

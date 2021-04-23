@@ -35,7 +35,7 @@ module Prescrypto
 
       # POST /api/v2/medics/
       def create_medic(payload = {})
-        client.post(path: "/api/v2/medics/#{id}/", body: payload.to_json)
+        client.post(path: "/api/v2/medics/", body: payload.to_json)
       end
 
       # GET /api/v2/medics/{id}/
