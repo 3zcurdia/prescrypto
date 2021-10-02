@@ -29,7 +29,7 @@ module Prescrypto
   end
 
   def self.deep_link(**args)
-    args = args.slice(:token, :external_patient_file, :patient_name, :patient_email, :patient_dob, :gender).compact
+    args = args.slice(:token, :external_patient_file, :patient_name, :patient_email, :patient_dob, :gender, :diagnosis).compact
     "#{configuration.api_url}redirect/new/?#{URI.encode_www_form(args.merge(v2_redirect: true))}"
   end
 end
