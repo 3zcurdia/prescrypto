@@ -5,8 +5,8 @@ require_relative 'lib/prescrypto/version'
 Gem::Specification.new do |spec|
   spec.name          = 'prescrypto'
   spec.version       = Prescrypto::VERSION
-  spec.authors       = ['Luis Ezcurdia', 'Raul Palacios']
-  spec.email         = ['ing.ezcurdia@gmail.com', 'palacios.raul02@gmail.com']
+  spec.authors       = ['Luis Ezcurdia', 'Raul Palacios', 'Daniel Monroy']
+  spec.email         = ['ing.ezcurdia@gmail.com', 'palacios.raul02@gmail.com', 'ldanielmonroy@gmail.com']
 
   spec.summary       = 'Prescrypto api client'
   spec.description   = 'Prescrypto api client '
